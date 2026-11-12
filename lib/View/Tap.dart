@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/Provider/changecolor.dart';
+import 'package:provider/provider.dart';
 
-class Tap extends StatefulWidget {
-  const new({super.key});
+class Tap extends StatelessWidget {
+  const Tap({super.key});
 
-  @override
-  State<Tap> createState() => _TapState();
-}
-
-class _TapState extends State<Tap> {
-  bool on=false;
-  
-  @override
+ @override
   Widget build(BuildContext context) {
+
+    Changecolor changecolorobject = Provider.of<Changecolor>(context);
+
     return Scaffold(
       body: GestureDetector(
-        onTap: () {
-         setState(() {
-           on=true;
-         });
-        },
+        onTap:()=> changecolorobject.changecolor(),
         child: AnimatedContainer(
-          color: on?Colors.white:Colors.blue,
-          duration: Duration(seconds: 1),
+          color: changecolorobject.on?Colors.white:Colors.blue,
+          duration: Duration(milliseconds: 1),
           child: Center(
             child: Column(
              children: [
@@ -35,5 +29,7 @@ class _TapState extends State<Tap> {
         ),
       ),
     );
-  }
+}
+
+
 }

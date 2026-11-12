@@ -1,52 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/Provider/counter.dart';
+import 'package:provider/provider.dart';
 
-class Calculator extends StatefulWidget {
+class Calculator extends StatelessWidget {
   const Calculator({super.key});
-
-  @override
-  State<Calculator> createState() => _MyCalculatorState();
-}
-
-class _MyCalculatorState extends State<Calculator> {
-  int counter=0;
-
-void Add(){
-  setState(() {
-    counter++;
-  });
-
-
-}
-void sub(){
-  setState(() {
-    if(counter>0){
-       counter--;
-    }
-    
-  });
-
-  
-}
-
-  @override
+@override
   Widget build(BuildContext context) {
+countechellange providerobject =Provider.of<countechellange>(context);
+
     return Scaffold(
         body: Center(
           child: Column(
            children: [
             SizedBox(height: 150,),
-            Text("Counter: $counter"),
+            Text("Counter: ${providerobject.counter}"),
              SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(onPressed: (){
-                  Add();
+                  providerobject.Add();
                 }, child: Text("+")),
                 SizedBox(width: 10,),
                   ElevatedButton(onPressed: (){
-                    sub();
+                   providerobject.sub();
                   }, child: Text("-")),
               ],
             )
@@ -55,7 +33,8 @@ void sub(){
         ),
       
     );
-  }
+ 
 }
 
+}
 
